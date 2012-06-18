@@ -1,1 +1,1 @@
-web: node maucomm.js
+web: node server.js
