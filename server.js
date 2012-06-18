@@ -21,7 +21,7 @@ var serverAuth = {
     if (msg.channel === '/meta/subscribe') {
       var subscriberToken = msg.ext && msg.ext.subscriberToken;
       if (subscriberToken !== (process.env.CLIENT_SUBSCRIBER_AUTH_TOKEN || 'whatevs_yo')) {
-        msg.error = 'Invalid subscription auth token ' + authToken;
+        msg.error = 'Invalid subscription auth token ' + subscriberToken;
       }
     }
     cb(msg);
