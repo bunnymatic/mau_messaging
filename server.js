@@ -28,7 +28,7 @@ var serverAuth = {
   }
 };
 
-// bayeux.addExtension(serverAuth);
+bayeux.addExtension(serverAuth);
 bayeux.attach(server);
 
 server.listen(port);
