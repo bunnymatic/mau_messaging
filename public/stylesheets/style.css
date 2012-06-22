@@ -1,0 +1,14 @@
+body, div {
+  font-family: sans-serif; 
+  background: #101010; 
+  color: #999; 
+}
+
+.hero-unit {
+  font-size: 100px;
+  padding-top: 100px;
+  letter-spacing: -10px;
+  text-align: center;
+}
+
+

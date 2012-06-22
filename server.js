@@ -1,20 +1,35 @@
 var http = require('http'),
-  faye = require('faye');
+  faye = require('faye'),
+  express = require('express'),
+  routes = require('./routes');
 
-var bayeux = new faye.NodeAdapter({mount:'/maumessages'});
+var app = module.exports = express.createServer();
 
-port = process.env.PORT || 3030;
-
-var html = "<!doctype html><html><head><style>body, div {font-family: sans-serif; background: #101010; color: #999; font-size: 100px;}</style></head><body><div style='margin: 200px;'>Go make some art.</div></body></html>";
-
-var server = http.createServer(function(req,res) {
-  res.writeHead(200, {'content-type': 'text/html'});
-  res.write(html);
-  res.end();
+// Configuration
+app.configure(function(){
+  app.set('views', __dirname + '/views');
+  app.set('view engine', 'jade');
+  app.set('view options', {layout: false});
+  app.use(express.bodyParser());
+  app.use(express.methodOverride());
+  app.use(app.router);
+  app.use(express.static(__dirname + '/public'));
 });
 
-console.log("MAU Messaging is live and direct on port " + port);
+app.configure('development', function(){
+  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+});
 
+app.configure('production', function(){
+  app.use(express.errorHandler());
+});
+
+// Routes
+app.get('/', routes.index);
+
+
+/*** Setup Faye Server */
+var bayeux = new faye.NodeAdapter({mount:'/maumessages'});
 /* setup security */
 var serverAuth = {
   incoming: function(msg, cb) {
@@ -29,6 +44,10 @@ var serverAuth = {
 };
 
 bayeux.addExtension(serverAuth);
-bayeux.attach(server);
+bayeux.attach(app);
 
-server.listen(port);
+port = process.env.PORT || 3030;
+
+app.listen(port, function(){
+  console.log("MAU Messaging is live and direct on port %d in %d mode",port, app.settings.env);
+});

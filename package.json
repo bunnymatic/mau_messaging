@@ -1,8 +1,10 @@
 {
-    "name": "maucomm"
-  , "version": "0.0.1"
+    "name": "mau-messaging"
+  , "version": "0.0.2"
   , "private": true
-  , "dependencies": { "faye": ""}
+  , "dependencies": { "faye": "",
+                      "express": "",
+                      "jade": ""}
   , "devDependencies" : {},
   "engines" : {
     "node": "0.6.x"
