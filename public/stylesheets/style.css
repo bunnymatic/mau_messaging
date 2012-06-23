@@ -43,3 +43,9 @@ html, body {
   border-left: 1px dotted #555;
 }
 
+footer {
+  margin: 30px auto;
+  padding-top: 10px;
+  border-top: 1px dotted #333;
+  text-align: center;
+}

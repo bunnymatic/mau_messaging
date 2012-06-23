@@ -24,6 +24,15 @@ html
       .row
         .channels You're currently not subscribed to any channel.
         ul#messages
-    .footer #{JSON.stringify(process.env)}
+    footer.footer
+      span 
+        | [site by 
+        a(href='http://rcode5.com', target="_blank") rcode5
+        | ]
+      span 
+        [hosted by 
+        a(href='http://heroku.com', target="_blank") heroku
+        ]
+
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js")
     script(src="/libs/bootstrap/js/bootstrap.min.js")
