@@ -33,7 +33,6 @@ var bayeux = new faye.NodeAdapter({mount:'/maumessages'});
 /* setup security */
 var serverAuth = {
   incoming: function(msg, cb) {
-    console.log(msg);
     if (msg.channel === '/meta/subscribe') {
       var subscriberToken = msg.ext && msg.ext.subscriberToken;
       if (subscriberToken !== (process.env.CLIENT_SUBSCRIBER_AUTH_TOKEN || 'whatevs_yo')) {

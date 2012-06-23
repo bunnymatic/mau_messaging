@@ -18,7 +18,7 @@ $(function() {
   /* heroku doesn't like websocket */
   client.disable('websocket');
   client.addExtension(clientAuth);
-
+  var num_messages_to_show = 20;
   var subscribe = function(channel) {
     if(subscription) {
       subscription.cancel();
@@ -35,7 +35,7 @@ $(function() {
       new_el.append(date).append(msg_block);
       $('#messages').prepend(new_el);
       var elements = $('#messages li').slice(1).removeClass("new");
-      $(elements.slice(4).get().reverse()).each(function() {
+      $(elements.slice(num_messages_to_show).get().reverse()).each(function() {
         $(this).fadeOut(function() { $(this).remove(); });
       });
     });
