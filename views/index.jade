@@ -5,18 +5,24 @@ html
     link(rel='stylesheet', href='/libs/bootstrap/css/bootstrap.min.css')
     link(rel='stylesheet', href='/libs/bootstrap/css/bootstrap-responsive.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src="#{FAYE_SERVER_URL}/client.js")
+    script var server_uri = "#{FAYE_SERVER_URL}";
+    script var SUBSCRIBER_AUTH_TOKEN = "#{SUBSCRIBER_TOKEN}";
+    script(src='http://code.jquery.com/jquery-1.7.2.js')
+    script(src="/js/date.format.js")
+    script(src="/js/faye_client.js")
   body
 
     .navbar.navbar-fixed-top
       .navbar-inner
         .container
-          .brand Mission Artists United
+          .brand Mission Artists United Messaging
 
     .container
       .row
         .hero-unit Go make some art.
       .row
-        ul.messages
-          li Messages go here
+        .channels You're currently not subscribed to any channel.
+        ul#messages
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js")
     script(src="/libs/bootstrap/js/bootstrap.min.js")
