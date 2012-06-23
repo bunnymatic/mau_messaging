@@ -5,12 +5,17 @@ $(function() {
   var subscription;
 
   /** server url is spec'd by the app config in the view */
+  var host = location.host;
+  if (!(/:\d+/.test(host))) {
+    host += ":80";
+  }
+  var server_uri = location.protocol + "//" + host + "/maumessages";
   var client = new Faye.Client(server_uri);
   var clientAuth = {
     outgoing: function(msg, cb) {
       if (msg.channel === '/meta/subscribe') {
         msg.ext = msg.ext || {};
-        msg.ext.subscriberToken = SUBSCRIBER_AUTH_TOKEN;
+        msg.ext.subscriberToken = SUBSCRIBER;
       }
       cb(msg);
     }
