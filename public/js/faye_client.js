@@ -23,7 +23,7 @@ $(function() {
   /* heroku doesn't like websocket */
   client.disable('websocket');
   client.addExtension(clientAuth);
-  var num_messages_to_show = 20;
+  var num_messages_to_show = 15;
   var subscribe = function(channel) {
     if(subscription) {
       subscription.cancel();
