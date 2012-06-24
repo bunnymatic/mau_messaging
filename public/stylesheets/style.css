@@ -33,7 +33,7 @@ html, body {
 #messages li div {
   float: left;
 }
-#messages li .channel {
+#messages li .path, #messages li .channel {
   text-align: center;
   width: 100px;
 }

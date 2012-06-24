@@ -33,7 +33,8 @@ $(function() {
       var new_el = $('<li>', {"class":"new clearfix"});
       var date = $('<div>', {"class":"date"}).html(today.format());
       var msg_block = $('<div>',{"class":"info"});
-      var flds = ['channel', 'text'];
+      var flds = ['env','path','text'];
+      console.log(msg);
       $.each(flds, function(idx, key) {
         msg_block.append($('<div>', {"class":key}).html(msg[key]));
       });
