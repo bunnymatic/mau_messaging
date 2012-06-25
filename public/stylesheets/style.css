@@ -34,8 +34,8 @@ html, body {
   float: left;
 }
 #messages li .path, #messages li .channel {
-  text-align: center;
-  width: 100px;
+  width: 200px;
+  overflow:hidden;
 }
 #messages li .info > div{ 
   margin-left: 20px;
