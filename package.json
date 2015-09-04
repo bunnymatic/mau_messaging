@@ -10,7 +10,7 @@
                       "errorhandler":""}
   , "devDependencies" : {},
   "engines" : {
-    "node": "2.10.1"
+    "node": "0.12.4"
   }
 
 }
