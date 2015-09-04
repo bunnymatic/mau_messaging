@@ -1,28 +1,29 @@
 var http = require('http'),
-  faye = require('faye'),
-  express = require('express'),
-  routes = require('./routes');
+    faye = require('faye'),
+    express = require('express'),
+    routes = require('./routes'),
+    http= require('http'),
+    bodyParser = require('body-parser'),
+    methodOverride = require('method-override'),
+    errorHandler = require('errorhandler');
 
-var app = module.exports = express.createServer();
+var app = express();
+var server = http.createServer(app);
 
 // Configuration
-app.configure(function(){
-  app.set('views', __dirname + '/views');
-  app.set('view engine', 'jade');
-  app.set('view options', {layout: false});
-  app.use(express.bodyParser());
-  app.use(express.methodOverride());
-  app.use(app.router);
-  app.use(express.static(__dirname + '/public'));
-});
+app.set('views', __dirname + '/views');
+app.set('view engine', 'jade');
+app.set('view options', {layout: false});
+app.use(bodyParser.json())
+app.use(methodOverride());
+app.use(express.static(__dirname + '/public'));
 
-app.configure('development', function(){
-  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-});
-
-app.configure('production', function(){
-  app.use(express.errorHandler());
-});
+if ('development' == app.get("env")) {
+  app.use(errorHandler({ dumpExceptions: true, showStack: true }));
+}
+if ('production' == app.get('env')) {
+  app.use(errorHandler());
+}
 
 // Routes
 app.get('/', routes.index);
@@ -44,7 +45,7 @@ var serverAuth = {
 };
 
 bayeux.addExtension(serverAuth);
-bayeux.attach(app);
+bayeux.attach(server);
 
 port = process.env.PORT || 3030;
 

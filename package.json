@@ -4,7 +4,10 @@
   , "private": true
   , "dependencies": { "faye": "",
                       "express": "",
-                      "jade": ""}
+                      "jade": "",
+                      "body-parser":"",
+                      "method-override":"",
+                      "errorhandler":""}
   , "devDependencies" : {},
   "engines" : {
     "node": "0.6.x"
